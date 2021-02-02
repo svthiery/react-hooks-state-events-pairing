@@ -1,7 +1,8 @@
 import { useState } from "react";
+import Comments from "./Comments"
 
-function VideoContainer({ title, views, upvotes, downvotes, createdAt }) {
-
+function VideoContainer({ title, views, upvotes, downvotes, createdAt, comments }) {
+    const [ hidden, setHidden] = useState(false)
     const [likes, setLikes] = useState(upvotes)
     const [dislikes, setDislikes] = useState(downvotes)
     // console.log(likes)
@@ -16,6 +17,15 @@ function VideoContainer({ title, views, upvotes, downvotes, createdAt }) {
         setDislikes(newDislikes)
     }
 
+    function toggleHidden(e) {
+        if (!hidden) {
+            e.target.textContent = "Show Comments";
+        } else {
+            e.target.textContent = "Hide Comments";
+        }
+        setHidden(hidden => !hidden);
+    }
+
     return (
         <div>
             <h1>{title}</h1>
@@ -24,8 +34,8 @@ function VideoContainer({ title, views, upvotes, downvotes, createdAt }) {
             <button onClick={handleDislikeClick} >{ dislikes } 👎</button>
             <br/>
             <br/>
-            <button>Hide Comments</button>
-            <Comments hideOrNot={boolean} />
+            <button onClick={toggleHidden}> Hide Comments</button>
+            { hidden ? null : <Comments comments={comments} />}
         </div>
     );
 }

@@ -18,11 +18,11 @@ function App() {
       />
     </div>
     <div>
-      <VideoContainer title={video.title} views={video.views} upvotes={video.upvotes} downvotes={video.downvotes} createdAt={video.createdAt}/>
+      <VideoContainer comments={video.comments} title={video.title} views={video.views} upvotes={video.upvotes} downvotes={video.downvotes} createdAt={video.createdAt}/>
     </div>
-    <div>
+    {/* <div>
       <Comments hideComments= comments={video.comments}/>
-    </div>
+    </div> */}
     </div>
   );
 }
